@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   ListItem,
   ListItemAvatar,
@@ -13,16 +13,25 @@ import { Book } from "../generated/types/Book";
 
 export type BookListItemProps = {
   book: Book;
+  onEdit: (book: Book) => void;
 };
 
-export const BookListItem = ({ book }: BookListItemProps) => {
+export function BookListItem({ book, onEdit }: BookListItemProps) {
   const { title, author, price } = book;
+  const handleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onEdit(book);
+    },
+    [book, onEdit]
+  );
   return (
     <>
       <ListItemButton>
         <ListItem
+          onClick={handleClick}
           secondaryAction={
-            <IconButton edge="end" aria-label="comments">
+            <IconButton edge="end" aria-label="comments" onClick={handleClick}>
               <Edit />
             </IconButton>
           }
@@ -41,4 +50,4 @@ export const BookListItem = ({ book }: BookListItemProps) => {
       <Divider component="li" />
     </>
   );
-};
+}

@@ -9,6 +9,7 @@
     "@mui/material": "^5.2.6",
     "@oats-ts/openapi": "0.0.10",
     "@oats-ts/openapi-http": "0.0.10",
+    "@oats-ts/openapi-http-client": "0.0.10",
     "@oats-ts/openapi-parameter-deserialization": "0.0.10",
     "@oats-ts/openapi-parameter-serialization": "0.0.10",
     "@oats-ts/try": "0.0.10",
