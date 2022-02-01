@@ -4,11 +4,11 @@ import { Header } from "./Header";
 import { BookList } from "./BookList";
 import { BookstoreContext } from "../state/BookStoreContext";
 import { useBookStoreContextValue } from "../state/useBookStoreContextValue";
-import { BookStoreClientSdk } from "../generated/sdk/BookStoreClientSdk";
-import { FetchClientConfiguration } from "@oats-ts/openapi-http-client/lib/fetch";
+import { BookStoreSdkImpl } from "../generated/sdk/BookStoreSdkImpl";
+import { FetchClientAdapter } from "@oats-ts/openapi-fetch-client-adapter";
 
-const sdk = new BookStoreClientSdk(
-  new FetchClientConfiguration("http://localhost:5000")
+const sdk = new BookStoreSdkImpl(
+  new FetchClientAdapter("http://localhost:5000")
 );
 
 export function App() {

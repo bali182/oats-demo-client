@@ -1,5 +1,4 @@
-import { RawHttpRequest } from '@oats-ts/openapi-http'
-import { ClientConfiguration } from '@oats-ts/openapi-http-client'
+import { ClientAdapter, RawHttpRequest } from '@oats-ts/openapi-http'
 import { CreateBookRequest } from '../requests/CreateBookRequest'
 import { CreateBookResponse } from '../responses/CreateBookResponse'
 import { createBookResponseBodyValidator } from '../validators/createBookResponseBodyValidator'
@@ -7,10 +6,7 @@ import { createBookResponseBodyValidator } from '../validators/createBookRespons
 /**
  * Creates a new book based on the request body. The id field can be ommited (will be ignored)
  */
-export async function createBook(
-  input: CreateBookRequest,
-  configuration: ClientConfiguration,
-): Promise<CreateBookResponse> {
+export async function createBook(input: CreateBookRequest, configuration: ClientAdapter): Promise<CreateBookResponse> {
   const requestUrl = await configuration.getUrl('/books', undefined)
   const requestHeaders = await configuration.getRequestHeaders(input, undefined)
   const requestBody = await configuration.getRequestBody(input)

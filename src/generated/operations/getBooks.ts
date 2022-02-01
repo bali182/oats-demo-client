@@ -1,9 +1,8 @@
-import { RawHttpRequest } from '@oats-ts/openapi-http'
-import { ClientConfiguration } from '@oats-ts/openapi-http-client'
+import { ClientAdapter, RawHttpRequest } from '@oats-ts/openapi-http'
 import { GetBooksResponse } from '../responses/GetBooksResponse'
 import { getBooksResponseBodyValidator } from '../validators/getBooksResponseBodyValidator'
 
-export async function getBooks(configuration: ClientConfiguration): Promise<GetBooksResponse> {
+export async function getBooks(configuration: ClientAdapter): Promise<GetBooksResponse> {
   const requestUrl = await configuration.getUrl('/books', undefined)
   const requestHeaders = await configuration.getRequestHeaders(undefined, undefined)
   const rawRequest: RawHttpRequest = {

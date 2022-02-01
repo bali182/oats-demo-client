@@ -1,5 +1,4 @@
-import { RawHttpRequest } from '@oats-ts/openapi-http'
-import { ClientConfiguration } from '@oats-ts/openapi-http-client'
+import { ClientAdapter, RawHttpRequest } from '@oats-ts/openapi-http'
 import { UpdateBookRequest } from '../requests/UpdateBookRequest'
 import { UpdateBookResponse } from '../responses/UpdateBookResponse'
 import { updateBookPathSerializer } from '../serializers/updateBookPathSerializer'
@@ -8,10 +7,7 @@ import { updateBookResponseBodyValidator } from '../validators/updateBookRespons
 /**
  * Updates the book associated with the given bookId
  */
-export async function updateBook(
-  input: UpdateBookRequest,
-  configuration: ClientConfiguration,
-): Promise<UpdateBookResponse> {
+export async function updateBook(input: UpdateBookRequest, configuration: ClientAdapter): Promise<UpdateBookResponse> {
   const path = await configuration.getPath(input, updateBookPathSerializer)
   const requestUrl = await configuration.getUrl(path, undefined)
   const requestHeaders = await configuration.getRequestHeaders(input, undefined)

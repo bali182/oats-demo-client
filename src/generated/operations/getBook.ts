@@ -1,5 +1,4 @@
-import { RawHttpRequest } from '@oats-ts/openapi-http'
-import { ClientConfiguration } from '@oats-ts/openapi-http-client'
+import { ClientAdapter, RawHttpRequest } from '@oats-ts/openapi-http'
 import { GetBookRequest } from '../requests/GetBookRequest'
 import { GetBookResponse } from '../responses/GetBookResponse'
 import { getBookPathSerializer } from '../serializers/getBookPathSerializer'
@@ -8,7 +7,7 @@ import { getBookResponseBodyValidator } from '../validators/getBookResponseBodyV
 /**
  * Returns the book associated with the given bookId
  */
-export async function getBook(input: GetBookRequest, configuration: ClientConfiguration): Promise<GetBookResponse> {
+export async function getBook(input: GetBookRequest, configuration: ClientAdapter): Promise<GetBookResponse> {
   const path = await configuration.getPath(input, getBookPathSerializer)
   const requestUrl = await configuration.getUrl(path, undefined)
   const requestHeaders = await configuration.getRequestHeaders(input, undefined)

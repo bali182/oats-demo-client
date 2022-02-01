@@ -1,4 +1,4 @@
-import { ClientConfiguration } from '@oats-ts/openapi-http-client'
+import { ClientAdapter } from '@oats-ts/openapi-http'
 import { createBook } from '../operations/createBook'
 import { getBook } from '../operations/getBook'
 import { getBooks } from '../operations/getBooks'
@@ -12,9 +12,9 @@ import { GetBooksResponse } from '../responses/GetBooksResponse'
 import { UpdateBookResponse } from '../responses/UpdateBookResponse'
 import { BookStoreSdk } from './BookStoreSdk'
 
-export class BookStoreClientSdk implements BookStoreSdk {
-  protected readonly config: ClientConfiguration
-  public constructor(config: ClientConfiguration) {
+export class BookStoreSdkImpl implements BookStoreSdk {
+  protected readonly config: ClientAdapter
+  public constructor(config: ClientAdapter) {
     this.config = config
   }
   public async createBook(input: CreateBookRequest): Promise<CreateBookResponse> {
